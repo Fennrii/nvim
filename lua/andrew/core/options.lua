@@ -5,7 +5,6 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
-
 -- tabs & indention
 opt.tabstop = 2 -- 2 spaces for tabs
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -34,5 +33,4 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- vertical split window is on the right
-opt.splitbelow = trew -- horizontal split window is below
-
+opt.splitbelow = true -- horizontal split window is below
