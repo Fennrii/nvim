@@ -30,9 +30,7 @@ return {
       -- disable window_picker for explorer to work with window splits
       actions = {
         open_file = {
-          window_picker = {
-            enable = false,
-          },
+          quit_on_open = true,
         },
       },
       git = {
