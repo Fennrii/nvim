@@ -3,7 +3,7 @@ return{
     -- 'folke/tokyonight.nvim',
     'kdheepak/monochrome.nvim',
     lazy = false,
-    priority = 1000, -- make sure this plugin is loaded first
+    priority = 2000, -- make sure this plugin is loaded first
     opts = {
       style = "photon"
     },
