@@ -15,6 +15,6 @@ return {
     set_hl(0, "Group", { fg = mono[15] })
     set_hl(0, "Normal", { fg = mono[12] })
 
-    vim.opt.background = "light"
+    vim.opt.background = "dark"
   end
 }
