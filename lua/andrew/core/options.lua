@@ -34,3 +34,7 @@ opt.clipboard:append("unnamed") -- use system clipboard as default register
 -- split windows
 opt.splitright = true -- vertical split window is on the right
 opt.splitbelow = true -- horizontal split window is below
+
+-- folding
+opt.foldmethod = "indent" -- fold based on indent level
+opt.foldlevel = 0 -- open existing folds to level 1
