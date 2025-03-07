@@ -37,4 +37,4 @@ opt.splitbelow = true -- horizontal split window is below
 
 -- folding
 opt.foldmethod = "indent" -- fold based on indent level
-opt.foldlevel = 0 -- open existing folds to level 1
+opt.foldlevel = 99 -- open existing folds to level 1
