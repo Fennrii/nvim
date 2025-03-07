@@ -27,12 +27,8 @@ keymap.set('n', '<leader>bn', '<cmd>bn<CR>', { desc = 'Go to next buffer' })
 keymap.set('n', '<leader>bp', '<cmd>bp<CR>', { desc = 'Go to previous buffer' })
 keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = 'Close current buffer' })
 keymap.set('n', '<leader>bl', '<cmd>ls<CR>', { desc = 'List buffers' })
--- hide current buffer
 keymap.set('n', '<leader>bb', '<cmd>bp<bar>bd #<CR>', { desc = 'Hide current buffer' })
--- hide all buffers except current
 keymap.set('n', '<leader>ba', '<cmd>bufdo if bufnr("") != bufnr("%") | bd | endif<CR>', { desc = 'Hide all buffers except current' })
--- new buffer at file location
 keymap.set('n', '<leader>bf', '<cmd>edit %:p:h<CR>', { desc = 'New buffer at file location' })
--- start buffer explorer
 keymap.set('n', '<leader>be', '<cmd>Telescope buffers<CR>', { desc = 'Start buffer explorer' })
 
