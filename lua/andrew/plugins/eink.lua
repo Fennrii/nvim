@@ -1,6 +1,6 @@
 return {
   "alexxGmZ/e-ink.nvim",
-  priority = 1000,
+  priority = 5000,
   config = function()
     require("e-ink").setup()
     vim.cmd.colorscheme "e-ink"
@@ -15,6 +15,6 @@ return {
     set_hl(0, "Group", { fg = mono[15] })
     set_hl(0, "Normal", { fg = mono[12] })
 
-    vim.opt.background = "dark"
+    vim.opt.background = "light"
   end
 }
