@@ -26,6 +26,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"pyright",
+        "clangd",
 			},
 		})
 		mason_tool_installer.setup({
@@ -35,6 +36,7 @@ return {
 				"isort",
 				"black",
 				"pylint",
+        "cpplint",
 			},
 		})
 	end,

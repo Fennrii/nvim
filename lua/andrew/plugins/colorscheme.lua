@@ -3,7 +3,6 @@ return{
     -- 'folke/tokyonight.nvim',
     'kdheepak/monochrome.nvim',
     lazy = false,
-    priority = 2000, -- make sure this plugin is loaded first
     opts = {
       style = "photon"
     },
@@ -42,7 +41,8 @@ return{
       -- load the colorscheme
       -- vim.cmd([[colorscheme tokyonight]])
     -- vim.cmd([[colorscheme lunaperche]])
-    vim.cmd([[colorscheme monochrome]])
+    -- vim.cmd([[colorscheme monochrome]])
+    
     end,
   },
 }

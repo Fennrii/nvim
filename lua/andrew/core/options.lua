@@ -1,6 +1,7 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
+local cmd = vim.cmd
 
 opt.relativenumber = true
 opt.number = true
@@ -22,7 +23,9 @@ opt.cursorline = true
 -- needs termguicolors for tokyonight colors to work
 -- (needs true color terminal)
 opt.termguicolors = true
-opt.background = "dark" -- color schemes that can be light or dark will be dark
+opt.background = "light"
+-- opt.background = "dark" -- color schemes that can be light or dark will be dark
+cmd("colorscheme NierTheme")
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- backspace

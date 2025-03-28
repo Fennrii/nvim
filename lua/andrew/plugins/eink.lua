@@ -3,7 +3,7 @@ return {
   priority = 5000,
   config = function()
     require("e-ink").setup()
-    vim.cmd.colorscheme "e-ink"
+    -- vim.cmd.colorscheme "e-ink"
     local set_hl = vim.api.nvim_set_hl
     local mono = require("e-ink.palette").mono()
     -- [[
@@ -15,6 +15,6 @@ return {
     set_hl(0, "Group", { fg = mono[15] })
     set_hl(0, "Normal", { fg = mono[12] })
 
-    vim.opt.background = "light"
+    -- vim.opt.background = "light"
   end
 }
