@@ -33,6 +33,47 @@ if &background == 'light'
   let s:ctermaccent7 = 95
 endif
 
+if &background == 'dark'
+  " Primary shades (inverted from the light version)
+  let s:guishade0 = "#4E4C43"   " darkest → becomes shade0 for dark bg
+  let s:guishade1 = "#5E6666"
+  let s:guishade2 = "#686458"
+  let s:guishade3 = "#787466"
+  let s:guishade4 = "#898474"
+  let s:guishade5 = "#A9A491"
+  let s:guishade6 = "#B9B49F"
+  let s:guishade7 = "#DAD4BB"   " lightest → becomes main fg
+
+  " Accents (kept same colors, swapped positions to mirror dark-theme logic)
+  let s:guiaccent0 = "#CD664D"
+  let s:guiaccent1 = "#B4AF9A"
+  let s:guiaccent2 = "#3BA99F"
+  let s:guiaccent3 = "#727B59"
+  let s:guiaccent4 = "#4E4C43"   " background anchor
+  let s:guiaccent5 = "#5E6666"
+  let s:guiaccent6 = "#B26F5F"
+  let s:guiaccent7 = "#50403C"
+
+  " cterm approximations (mirroring brightness order)
+  let s:ctermshade0 = 95
+  let s:ctermshade1 = 102
+  let s:ctermshade2 = 102
+  let s:ctermshade3 = 144
+  let s:ctermshade4 = 145
+  let s:ctermshade5 = 145
+  let s:ctermshade6 = 187
+  let s:ctermshade7 = 188
+
+  let s:ctermaccent0 = 174
+  let s:ctermaccent1 = 181
+  let s:ctermaccent2 = 73
+  let s:ctermaccent3 = 102
+  let s:ctermaccent4 = 95
+  let s:ctermaccent5 = 102
+  let s:ctermaccent6 = 138
+  let s:ctermaccent7 = 95
+endif
+
 highlight clear
 syntax reset
 let g:colors_name = "ThemerMyColorSet"
