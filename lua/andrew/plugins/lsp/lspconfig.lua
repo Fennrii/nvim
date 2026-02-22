@@ -1,89 +1,85 @@
 return {
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
-		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
-	},
-	config = function()
-		local lspconfig = require("lspconfig")
+  "neovim/nvim-lspconfig",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    { "antosha417/nvim-lsp-file-operations", config = true },
+    { "folke/neodev.nvim", opts = {} },
+  },
+  config = function()
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local keymap = vim.keymap
 
-		local mason_lspconfig = require("mason-lspconfig")
+    -- Keymaps (your original idea, but watch spelling)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+      callback = function(ev)
+        local opts = { buffer = ev.buf, silent = true }
 
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        opts.desc = "Show LSP references"
+        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
 
-		local keymap = vim.keymap
-
-    lspconfig.glsl_analyzer.setup{}
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-			callback = function(ev)
-				-- local mappings are buffered
-				local opts = { buffer = ev.buf, silent = true }
-
-				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
-
-        opts.desc = "Silly LSP references"
+        opts.desc = "LSP references"
         keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
-				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        opts.desc = "Go to declaration"
+        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+        opts.desc = "Show LSP definitions"
+        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+        opts.desc = "Show LSP implementations"
+        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
-				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+        opts.desc = "Show LSP type definitions"
+        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
-				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        opts.desc = "See available code actions"
+        keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-				opts.desc = "Smart raname"
-				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        opts.desc = "Smart rename"
+        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+        opts.desc = "Show buffer diagnostics"
+        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
-				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+        opts.desc = "Show line diagnostics"
+        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
-				opts.desc = "Show documentation for what is under cursor"
-				keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        opts.desc = "Hover documentation"
+        keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-			end,
-		})
+        opts.desc = "Restart LSP"
+        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+      end,
+    })
 
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+    local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["lua_ls"] = function()
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-		})
-	end,
+    -- Base config shared by servers
+    local base = { capabilities = capabilities }
+
+    -- Server configs (Neovim 0.11+)
+    vim.lsp.config("pyright", base)
+    vim.lsp.config("clangd", base)
+    vim.lsp.config("glsl_analyzer", base)
+
+    vim.lsp.config("lua_ls", {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+          completion = { callSnippet = "Replace" },
+        },
+      },
+    })
+
+    -- Enable servers (if mason-lspconfig automatic_enable = false)
+    vim.lsp.enable("lua_ls")
+    vim.lsp.enable("pyright")
+    vim.lsp.enable("clangd")
+    vim.lsp.enable("glsl_analyzer")
+  end,
 }
+

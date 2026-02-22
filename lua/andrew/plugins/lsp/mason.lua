@@ -27,7 +27,10 @@ return {
 				"lua_ls",
 				"pyright",
         "clangd",
+        "glsl_analyzer",
 			},
+
+      automatic_enable = false,
 		})
 		mason_tool_installer.setup({
 			ensure_installed = {
