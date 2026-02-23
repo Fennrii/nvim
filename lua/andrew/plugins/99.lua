@@ -45,15 +45,15 @@ return {
                     --- ... the other rules in that dir ...
                     ---
                     custom_rules = {
-                      "scratch/custom_rules/",
+                      "~/remote/vim99/custom_rules/",
                     },
 
                     --- Configure @file completion (all fields optional, sensible defaults)
                     files = {
-                        -- enabled = true,
-                        -- max_file_size = 102400,     -- bytes, skip files larger than this
-                        -- max_files = 5000,            -- cap on total discovered files
-                        -- exclude = { ".env", ".env.*", "node_modules", ".git", ... },
+                        enabled = true,
+                        max_file_size = 102400,     -- bytes, skip files larger than this
+                        max_files = 5000,            -- cap on total discovered files
+                        exclude = { ".env", ".env.*", "node_modules", ".git" },
                     },
 
                     --- What autocomplete you use.
